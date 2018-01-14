@@ -3,9 +3,11 @@ import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
 import { devToolsEnhancer } from 'redux-devtools-extension';
 
 import appReducer from './appReducer';
+import { loadState, saveState } from './localStorage';
 
 const configureStore = () => {
   let enhancers = [];
+  const persistedState = { ...loadState('state') };
   const middlewares = [];
 
   if (process.env.NODE_ENV === 'development') {
@@ -19,8 +21,19 @@ const configureStore = () => {
     combineReducers({
       app: appReducer,
     }),
+    { ...persistedState },
     compose(applyMiddleware(...middlewares), ...enhancers),
   );
+
+  store.subscribe(() => {
+    saveState({
+      app: store.getState().app,
+    });
+  });
+
+  store.dispatch({
+    type: 'INIT',
+  });
 
   return store;
 };
