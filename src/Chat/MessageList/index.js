@@ -1,3 +1,9 @@
+import { connect } from 'react-redux';
 import MessageList from './MessageList';
 
-export default MessageList;
+const mapStateToProps = ({ chat, app }) => ({
+  user: app.user,
+  messages: chat.messages,
+});
+
+export default connect(mapStateToProps, null)(MessageList);
