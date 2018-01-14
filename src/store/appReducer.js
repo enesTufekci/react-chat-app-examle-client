@@ -8,7 +8,7 @@ const ACTION_HANDLERS = {
 const initialState = {
   users: [],
   user: {
-    nick: internet.username(),
+    nick: internet.userName(),
     id: v4(),
   },
 };
