@@ -3,6 +3,8 @@ import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
 import { devToolsEnhancer } from 'redux-devtools-extension';
 
 import appReducer from './appReducer';
+import chatReducer from '../Chat/reducer';
+
 import { loadState, saveState } from './localStorage';
 
 const configureStore = () => {
@@ -20,6 +22,7 @@ const configureStore = () => {
   const store = createStore(
     combineReducers({
       app: appReducer,
+      chat: chatReducer,
     }),
     { ...persistedState },
     compose(applyMiddleware(...middlewares), ...enhancers),
