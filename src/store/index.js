@@ -31,6 +31,7 @@ const configureStore = () => {
   store.subscribe(() => {
     saveState({
       app: store.getState().app,
+      chat: store.getState().chat,
     });
   });
 
