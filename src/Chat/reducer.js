@@ -1,7 +1,18 @@
 import {
   INPUT_UPDATED,
   USER_SENT_MESSAGE,
+  USER_CONNECTED,
 } from 'common/actionTypes';
+
+export function connectUser() {
+  return {
+    type: USER_CONNECTED,
+    meta: {
+      socket: true,
+      user: true,
+    },
+  };
+}
 
 export const ACTION_HANDLERS = {
   [INPUT_UPDATED]: (state, action) =>
