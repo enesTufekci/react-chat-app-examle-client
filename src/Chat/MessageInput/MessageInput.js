@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import './MessageInput.css';
 
 const MessageInput = ({ input, updateInput, sendMessage }) => {
   const handleKeyDown = (e) => {

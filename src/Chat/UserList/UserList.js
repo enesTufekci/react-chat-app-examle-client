@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import './UserList.css';
 
 const UserList = ({ user, users }) => {
   const userList = users.filter(u => u.id !== user.id)

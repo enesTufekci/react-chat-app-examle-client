@@ -1,0 +1,21 @@
+.user-list {
+  width: 200px;
+  height: 100vh;
+  padding: 10px;
+  background-color: rgba(255, 255, 255, .3);
+  color: black;
+}
+
+.user-list .user-list-item {
+  border-bottom: 1px solid rgba(0,0,0,0.1);
+  font-weight: 300;
+  color: #333;
+  height: 44px;
+  line-height: 44px;
+  display: flex;
+  flex-direction: row;
+}
+
+.user-list .user-list-item .user-name {
+  color: black;
+}
