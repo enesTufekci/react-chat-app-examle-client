@@ -1,3 +1,7 @@
+import {
+  USER_LIST_UPDATED,
+  USER_SENT_MESSAGE,
+} from 'common/actionTypes';
 import appReducer from '../appReducer';
 
 describe('#appReducer', () => {
@@ -10,5 +14,30 @@ describe('#appReducer', () => {
       type: 'UNDEFINED_ACTION',
     };
     expect(appReducer(initialState, action)).toEqual(initialState);
+  });
+
+  it('should handle USER_LIST_UPDATED', () => {
+    const action = {
+      type: USER_LIST_UPDATED,
+      payload: ['enes', 'foo', 'bar', 'newUser'],
+    };
+    const expectedState = {
+      ...initialState,
+      users: ['enes', 'foo', 'bar', 'newUser'],
+    };
+    expect(appReducer(initialState, action)).toEqual(expectedState);
+  });
+
+  it('should handle USER_SENT_MESSAGE', () => {
+    const message = { text: 'hello', uuid: '1000-2000' };
+    const expectedState = {
+      ...initialState,
+      user: { ...initialState.user, lastMessageId: message.uuid },
+    };
+    const action = {
+      type: USER_SENT_MESSAGE,
+      payload: message,
+    };
+    expect(appReducer(initialState, action)).toEqual(expectedState);
   });
 });
