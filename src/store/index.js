@@ -1,17 +1,22 @@
 import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
 /* eslint-disable import/no-extraneous-dependencies */
 import { devToolsEnhancer } from 'redux-devtools-extension';
-
+import { v4 } from 'uuid';
+import moment from 'moment';
 import appReducer from './appReducer';
 import chatReducer from '../Chat/reducer';
 
 import { loadState, saveState } from './localStorage';
-import { userMiddleware } from './middlewares';
+import { userMiddleware, dateMiddleware, uuidMiddleware } from './middlewares';
 
 const configureStore = () => {
   let enhancers = [];
   const persistedState = { ...loadState('state') };
-  const middlewares = [userMiddleware];
+  const middlewares = [
+    userMiddleware,
+    uuidMiddleware(v4),
+    dateMiddleware(() => moment().format('DD.MM.YYYY, h:mm:ss a')),
+  ];
 
   if (process.env.NODE_ENV === 'development') {
     enhancers = [
