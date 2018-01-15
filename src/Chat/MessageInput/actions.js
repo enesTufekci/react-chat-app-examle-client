@@ -18,5 +18,6 @@ export const sendMessage = text => ({
     user: true,
     date: true,
     uuid: true,
+    socket: true,
   },
 });
