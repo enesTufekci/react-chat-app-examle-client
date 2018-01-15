@@ -1,6 +1,7 @@
 import {
   INPUT_UPDATED,
   USER_SENT_MESSAGE,
+  INPUT_MODE_SWITCHED,
 } from 'common/actionTypes';
 
 export const updateInput = e => ({
@@ -20,4 +21,9 @@ export const sendMessage = text => ({
     uuid: true,
     socket: true,
   },
+});
+
+export const switchInputMode = mode => ({
+  type: INPUT_MODE_SWITCHED,
+  payload: mode,
 });
