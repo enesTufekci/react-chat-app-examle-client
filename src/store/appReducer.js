@@ -13,6 +13,7 @@ const initialState = {
   user: {
     nick: internet.userName(),
     id: v4(),
+    lastMessageId: undefined,
   },
 };
 
