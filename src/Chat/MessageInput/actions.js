@@ -2,6 +2,9 @@ import {
   INPUT_UPDATED,
   USER_SENT_MESSAGE,
   INPUT_MODE_SWITCHED,
+  USER_NICK_UPDATED,
+  USER_THINKED,
+  USER_OOPSED,
 } from 'common/actionTypes';
 
 export const updateInput = e => ({
@@ -27,3 +30,41 @@ export const switchInputMode = mode => ({
   type: INPUT_MODE_SWITCHED,
   payload: mode,
 });
+
+export const COMMANDS = {
+  '/nick': parameter => ({
+    type: USER_NICK_UPDATED,
+    payload: {
+      newNick: parameter,
+    },
+    meta: {
+      socket: true,
+    },
+  }),
+  '/think': () => ({
+    type: USER_THINKED,
+    payload: {
+      type: 'think',
+    },
+    meta: {
+      user: true,
+      socket: true,
+    },
+  }),
+  '/oops': () => ({
+    type: USER_OOPSED,
+    meta: {
+      user: true,
+      socket: true,
+    },
+  }),
+};
+
+export const sendCommand = (command) => {
+  const commandArray = command.split(' ');
+  const type = commandArray[0];
+  const parameter = commandArray[1];
+  const commandHandler = COMMANDS[type];
+  return commandHandler ? commandHandler(parameter) : null;
+};
+
