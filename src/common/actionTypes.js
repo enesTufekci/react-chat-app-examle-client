@@ -1,0 +1,2 @@
+export const INPUT_UPDATED = 'INPUT_UPDATED';
+export const USER_SENT_MESSAGE = 'USER_SENT_MESSAGE';
