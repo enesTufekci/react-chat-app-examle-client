@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import MessageInput from './MessageInput';
-import { updateInput, sendMessage, switchInputMode } from './actions';
+import { updateInput, sendMessage, switchInputMode, sendCommand } from './actions';
 
 const mapStateToProps = ({ chat }) => ({
   input: chat.input,
@@ -11,6 +11,7 @@ const mapDispatchToProps = {
   updateInput,
   sendMessage,
   switchInputMode,
+  sendCommand,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(MessageInput);

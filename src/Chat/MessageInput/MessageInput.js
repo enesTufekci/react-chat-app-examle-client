@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import './MessageInput.css';
 
 const MessageInput = ({
-  input, inputMode, updateInput, sendMessage, switchInputMode,
+  input, inputMode, updateInput, sendMessage, switchInputMode, sendCommand,
 }) => {
   const handleKeyDown = (e) => {
     if (input === '') {
@@ -17,7 +17,7 @@ const MessageInput = ({
       e.preventDefault();
       if (input !== '') {
         if (inputMode === 'command') {
-          // send command
+          sendCommand(input);
         } else {
           sendMessage(input);
         }
@@ -49,6 +49,7 @@ MessageInput.propTypes = {
   updateInput: PropTypes.func.isRequired,
   sendMessage: PropTypes.func.isRequired,
   switchInputMode: PropTypes.func.isRequired,
+  sendCommand: PropTypes.func.isRequired,
 };
 
 export default MessageInput;
