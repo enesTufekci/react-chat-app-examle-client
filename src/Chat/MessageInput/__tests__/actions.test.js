@@ -30,6 +30,24 @@ describe('#sendMessage', () => {
         user: true,
         date: true,
         uuid: true,
+        socket: true,
+      },
+    };
+    expect(sendMessage(mockText)).toEqual(expectedAction);
+  });
+  it('should replace multiline texts', () => {
+    const mockText = 'firstline \n secondline';
+    const expectedAction = {
+      type: USER_SENT_MESSAGE,
+      payload: {
+        text: 'firstline <br /> secondline',
+        type: 'normal',
+      },
+      meta: {
+        user: true,
+        date: true,
+        uuid: true,
+        socket: true,
       },
     };
     expect(sendMessage(mockText)).toEqual(expectedAction);
