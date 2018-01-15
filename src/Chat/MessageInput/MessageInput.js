@@ -27,10 +27,12 @@ const MessageInput = ({ input, updateInput, sendMessage }) => {
 
 MessageInput.defaultProps = {
   input: '',
+  inputMode: 'normal',
 };
 
 MessageInput.propTypes = {
   input: PropTypes.string,
+  inputMode: PropTypes.string,
   updateInput: PropTypes.func.isRequired,
   sendMessage: PropTypes.func.isRequired,
 };
