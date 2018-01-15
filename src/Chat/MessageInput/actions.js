@@ -11,7 +11,7 @@ export const updateInput = e => ({
 export const sendMessage = text => ({
   type: USER_SENT_MESSAGE,
   payload: {
-    text,
+    text: text.replace(/(?:\r\n|\r|\n)/g, '<br />'),
     type: 'normal',
   },
   meta: {
