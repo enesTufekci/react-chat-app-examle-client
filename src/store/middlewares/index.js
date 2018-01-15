@@ -12,3 +12,10 @@ export const uuidMiddleware = v4 => () => next => (action) => {
   }
   return next(action);
 };
+
+export const dateMiddleware = now => () => next => (action) => {
+  if (action.meta && action.meta.date) {
+    return next({ ...action, payload: { ...action.payload, date: now() } });
+  }
+  return next(action);
+};
