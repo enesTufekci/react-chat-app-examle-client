@@ -1,7 +1,17 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import './MessageList.css';
 
 class MessageList extends Component {
+  componentDidUpdate() {
+    this.scrollDown();
+  }
+
+  scrollDown() {
+    const { messageListEl } = this;
+    messageListEl.scrollTop = (messageListEl.scrollHeight - messageListEl.offsetHeight);
+  }
+
   render() {
     const { messages, user } = this.props;
     let messageList = [];
@@ -29,7 +39,7 @@ class MessageList extends Component {
       ];
     });
     return (
-      <div className="message-list">
+      <div className="message-list" ref={(el) => { this.messageListEl = el; }}>
         { messageList }
       </div>
     );

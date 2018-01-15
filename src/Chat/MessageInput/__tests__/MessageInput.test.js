@@ -3,11 +3,13 @@ import Enzyme, { shallow } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 
 import MessageInput from '../MessageInput';
-import { updateInput, sendMessage } from '../actions';
+import { updateInput, sendMessage, switchInputMode, sendCommand } from '../actions';
 
 const props = {
   updateInput,
   sendMessage,
+  switchInputMode,
+  sendCommand,
 };
 
 Enzyme.configure({ adapter: new Adapter() });

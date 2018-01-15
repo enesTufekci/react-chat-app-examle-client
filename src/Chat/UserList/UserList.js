@@ -1,5 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { BeatLoader } from 'react-spinners';
+import './UserList.css';
 
 const UserList = ({ user, users }) => {
   const userList = users.filter(u => u.id !== user.id)
@@ -7,6 +9,13 @@ const UserList = ({ user, users }) => {
       <div className="user-list-item" key={u.id}>
         <div className="user-name">
           { u.nick }
+        </div>
+        <div className="typing-indicator">
+          <BeatLoader
+            color="#333"
+            size={5}
+            loading={u.isTyping}
+          />
         </div>
       </div>
     ));

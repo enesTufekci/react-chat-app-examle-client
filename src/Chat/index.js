@@ -5,6 +5,7 @@ import UserList from './UserList';
 import MessageList from './MessageList';
 import MessageInput from './MessageInput';
 import { connectUser } from './reducer';
+import './index.css';
 
 class Chat extends Component {
   componentDidMount() {
@@ -13,7 +14,7 @@ class Chat extends Component {
 
   render() {
     return (
-      <div>
+      <div className="container">
         <UserList />
         <div className="message-screen">
           <MessageList />
