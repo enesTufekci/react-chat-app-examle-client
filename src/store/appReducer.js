@@ -5,6 +5,8 @@ import {
   USER_LIST_UPDATED,
   USER_SENT_MESSAGE,
   USER_NICK_UPDATED,
+  IS_TYPING_SIGNAL_RECEIVED,
+  IS_NOT_TYPING_SIGNAL_RECEIVED,
 } from 'common/actionTypes';
 
 const ACTION_HANDLERS = {
@@ -14,6 +16,24 @@ const ACTION_HANDLERS = {
     ({ ...state, user: { ...state.user, lastMessageId: action.payload.uuid } }),
   [USER_NICK_UPDATED]: (state, action) =>
     ({ ...state, user: { ...state.user, nick: action.payload.newNick } }),
+  [IS_TYPING_SIGNAL_RECEIVED]: (state, action) => {
+    const updatedUsers = state.users.map((user) => {
+      if (user.id === action.payload) {
+        return { ...user, isTyping: true };
+      }
+      return user;
+    });
+    return { ...state, users: updatedUsers };
+  },
+  [IS_NOT_TYPING_SIGNAL_RECEIVED]: (state, action) => {
+    const updatedUsers = state.users.map((user) => {
+      if (user.id === action.payload) {
+        return { ...user, isTyping: false };
+      }
+      return user;
+    });
+    return { ...state, users: updatedUsers };
+  },
 };
 
 const initialState = {
