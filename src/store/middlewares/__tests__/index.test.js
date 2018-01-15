@@ -1,4 +1,4 @@
-import { userMiddleware, uuidMiddleware } from '../index';
+import { userMiddleware, uuidMiddleware, dateMiddleware } from '../index';
 
 describe('#userMiddleware', () => {
   const user = { nick: 'enes' };
@@ -40,6 +40,28 @@ describe('#uuidMiddleware', () => {
     const { next, invoke } = create();
     const action = { type: 'TEST', meta: { uuid: true } };
     const expectedAction = { ...action, payload: { uuid } };
+    invoke(action);
+    expect(next).toHaveBeenCalledWith(expectedAction);
+  });
+});
+
+describe('#dateMiddleware', () => {
+  const date = 'date';
+  const now = () => date;
+  const create = () => {
+    const store = {
+      getState: jest.fn(() => ({})),
+      dispatch: jest.fn(),
+    };
+    const next = jest.fn();
+    const invoke = action => dateMiddleware(now)(store)(next)(action);
+
+    return { store, next, invoke };
+  };
+  it('should attach date to action payload', () => {
+    const { next, invoke } = create();
+    const action = { type: 'TEST', meta: { date: true } };
+    const expectedAction = { ...action, payload: { date } };
     invoke(action);
     expect(next).toHaveBeenCalledWith(expectedAction);
   });
