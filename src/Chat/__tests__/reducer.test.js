@@ -2,6 +2,7 @@ import {
   USER_CONNECTED,
   INPUT_UPDATED,
   USER_SENT_MESSAGE,
+  USER_RECEIVED_MESSAGE,
 } from 'common/actionTypes';
 
 import chatReducer, { connectUser } from '../reducer';
@@ -32,6 +33,19 @@ describe('#chatReducer', () => {
     const message = 'message';
     const action = {
       type: USER_SENT_MESSAGE,
+      payload: message,
+    };
+    const expectedState = {
+      ...initialState,
+      messages: [message],
+    };
+    expect(chatReducer(initialState, action)).toEqual(expectedState);
+  });
+
+  it('should handle USER_RECEIVED_MESSAGE', () => {
+    const message = 'message';
+    const action = {
+      type: USER_RECEIVED_MESSAGE,
       payload: message,
     };
     const expectedState = {
