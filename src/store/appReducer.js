@@ -42,6 +42,7 @@ const initialState = {
     nick: internet.userName(),
     id: v4(),
     lastMessageId: undefined,
+    isTyping: false,
   },
 };
 
