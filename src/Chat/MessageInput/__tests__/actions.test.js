@@ -1,7 +1,7 @@
 import { INPUT_UPDATED, USER_SENT_MESSAGE } from 'common/actionTypes';
-import { inputUpdate, sendMessage } from '../actions';
+import { updateInput, sendMessage } from '../actions';
 
-describe('#inputUpdate', () => {
+describe('#updateInput', () => {
   it('should create an action to update input', () => {
     const mockEvent = {
       target: {
@@ -12,7 +12,7 @@ describe('#inputUpdate', () => {
       type: INPUT_UPDATED,
       payload: mockEvent.target.value,
     };
-    expect(inputUpdate(mockEvent)).toEqual(expectedAction);
+    expect(updateInput(mockEvent)).toEqual(expectedAction);
   });
 });
 

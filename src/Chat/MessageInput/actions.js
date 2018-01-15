@@ -3,7 +3,7 @@ import {
   USER_SENT_MESSAGE,
 } from 'common/actionTypes';
 
-export const inputUpdate = e => ({
+export const updateInput = e => ({
   type: INPUT_UPDATED,
   payload: e.target.value,
 });
