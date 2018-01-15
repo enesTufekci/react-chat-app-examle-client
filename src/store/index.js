@@ -1,6 +1,7 @@
 import { createStore, applyMiddleware, compose, combineReducers } from 'redux';
 /* eslint-disable import/no-extraneous-dependencies */
 import { devToolsEnhancer } from 'redux-devtools-extension';
+import throttle from 'lodash/throttle';
 import { v4 } from 'uuid';
 import moment from 'moment';
 import appReducer from './appReducer';
@@ -41,12 +42,14 @@ const configureStore = () => {
     compose(applyMiddleware(...middlewares), ...enhancers),
   );
 
-  store.subscribe(() => {
+  // JSON.parse & JSON.strigify can be very expensive
+  // it doesnt need to run in every state change.
+  store.subscribe(throttle(() => {
     saveState({
       app: store.getState().app,
       chat: store.getState().chat,
     });
-  });
+  }, 1000));
 
   store.dispatch({
     type: 'INIT',
