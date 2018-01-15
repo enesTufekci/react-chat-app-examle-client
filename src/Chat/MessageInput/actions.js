@@ -14,4 +14,7 @@ export const sendMessage = text => ({
     text,
     type: 'normal',
   },
+  meta: {
+    user: true,
+  },
 });

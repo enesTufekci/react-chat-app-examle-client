@@ -26,6 +26,11 @@ describe('#sendMessage', () => {
         text: mockText,
         type: 'normal',
       },
+      meta: {
+        user: true,
+        date: true,
+        uuid: true,
+      },
     };
     expect(sendMessage(mockText)).toEqual(expectedAction);
   });
