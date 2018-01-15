@@ -51,10 +51,6 @@ const configureStore = () => {
     });
   }, 1000));
 
-  store.dispatch({
-    type: 'INIT',
-  });
-
   return store;
 };
 
