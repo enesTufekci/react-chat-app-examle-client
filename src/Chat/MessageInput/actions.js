@@ -16,5 +16,7 @@ export const sendMessage = text => ({
   },
   meta: {
     user: true,
+    date: true,
+    uuid: true,
   },
 });
