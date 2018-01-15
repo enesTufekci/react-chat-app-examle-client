@@ -35,6 +35,7 @@ MessageInput.propTypes = {
   inputMode: PropTypes.string,
   updateInput: PropTypes.func.isRequired,
   sendMessage: PropTypes.func.isRequired,
+  switchInput: PropTypes.func.isRequired,
 };
 
 export default MessageInput;
