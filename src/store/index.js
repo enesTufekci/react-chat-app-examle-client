@@ -8,6 +8,7 @@ import chatReducer from '../Chat/reducer';
 
 import { loadState, saveState } from './localStorage';
 import { userMiddleware, dateMiddleware, uuidMiddleware } from './middlewares';
+import socketMiddleware from './middlewares/socketMiddleware';
 
 const configureStore = () => {
   let enhancers = [];
@@ -23,6 +24,12 @@ const configureStore = () => {
       devToolsEnhancer(),
       ...enhancers,
     ];
+  }
+
+  if (process.env.NODE_ENV !== 'test') {
+    middlewares.push(socketMiddleware({
+      url: process.env.REACT_APP_SOCKET_URL,
+    }));
   }
 
   const store = createStore(
