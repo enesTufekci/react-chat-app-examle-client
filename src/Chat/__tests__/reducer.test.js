@@ -3,12 +3,14 @@ import {
   INPUT_UPDATED,
   USER_SENT_MESSAGE,
   USER_RECEIVED_MESSAGE,
+  INPUT_MODE_SWITCHED,
 } from 'common/actionTypes';
 
 import chatReducer, { connectUser } from '../reducer';
 
 const initialState = {
   input: '',
+  inputMode: 'normal',
   messages: [],
 };
 
@@ -51,6 +53,19 @@ describe('#chatReducer', () => {
     const expectedState = {
       ...initialState,
       messages: [message],
+    };
+    expect(chatReducer(initialState, action)).toEqual(expectedState);
+  });
+
+  it('should handle INPUT_MODE_SWITCHED', () => {
+    const mode = 'command';
+    const action = {
+      type: INPUT_MODE_SWITCHED,
+      payload: mode,
+    };
+    const expectedState = {
+      ...initialState,
+      inputMode: mode,
     };
     expect(chatReducer(initialState, action)).toEqual(expectedState);
   });
