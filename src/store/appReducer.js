@@ -4,6 +4,7 @@ import { v4 } from 'uuid';
 import {
   USER_LIST_UPDATED,
   USER_SENT_MESSAGE,
+  USER_NICK_UPDATED,
 } from 'common/actionTypes';
 
 const ACTION_HANDLERS = {
@@ -11,6 +12,8 @@ const ACTION_HANDLERS = {
     ({ ...state, users: [...action.payload] }),
   [USER_SENT_MESSAGE]: (state, action) =>
     ({ ...state, user: { ...state.user, lastMessageId: action.payload.uuid } }),
+  [USER_NICK_UPDATED]: (state, action) =>
+    ({ ...state, user: { ...state.user, nick: action.payload.newNick } }),
 };
 
 const initialState = {
