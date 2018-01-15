@@ -1,6 +1,7 @@
 import {
   USER_LIST_UPDATED,
   USER_SENT_MESSAGE,
+  USER_NICK_UPDATED,
 } from 'common/actionTypes';
 import appReducer from '../appReducer';
 
@@ -37,6 +38,21 @@ describe('#appReducer', () => {
     const action = {
       type: USER_SENT_MESSAGE,
       payload: message,
+    };
+    expect(appReducer(initialState, action)).toEqual(expectedState);
+  });
+
+  it('should handle USER_NICK_UPDATED', () => {
+    const newNick = 'newNick';
+    const action = {
+      type: USER_NICK_UPDATED,
+      payload: {
+        newNick,
+      },
+    };
+    const expectedState = {
+      ...initialState,
+      user: { ...initialState.user, nick: newNick },
     };
     expect(appReducer(initialState, action)).toEqual(expectedState);
   });
