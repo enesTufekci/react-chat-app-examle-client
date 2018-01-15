@@ -2,6 +2,7 @@ import {
   INPUT_UPDATED,
   USER_SENT_MESSAGE,
   USER_CONNECTED,
+  USER_RECEIVED_MESSAGE,
 } from 'common/actionTypes';
 
 export function connectUser() {
@@ -19,6 +20,8 @@ export const ACTION_HANDLERS = {
     ({ ...state, input: action.payload }),
   [USER_SENT_MESSAGE]: (state, action) =>
     ({ ...state, input: '', messages: [...state.messages, action.payload] }),
+  [USER_RECEIVED_MESSAGE]: (state, action) =>
+    ({ ...state, messages: [...state.messages, action.payload] }),
 };
 
 const initialState = {
